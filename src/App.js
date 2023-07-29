@@ -19,7 +19,7 @@ const App = () => {
       const response = await axios.get('/articles');
       setArticles(response.data);
     } catch (error) {
-      console.error('Error fetching articles:', error);
+      console.error('Error fetching articles:', error)
     }
   };
 
