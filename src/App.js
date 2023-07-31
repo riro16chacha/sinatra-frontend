@@ -7,8 +7,6 @@ const App = () => {
   const [articles, setArticles] = useState([]);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [imageURL, setImageURL] = useState('');
-  const [categoryId, setCategoryId] = useState('');
 
   useEffect(() => {
     fetchArticles();
@@ -29,14 +27,10 @@ const App = () => {
       const response = await axios.post('/articles', {
         title,
         content,
-        image_url: imageURL,
-        category_id: categoryId,
       });
       setArticles([...articles, response.data]);
       setTitle('');
       setContent('');
-      setImageURL('');
-      setCategoryId('');
     } catch (error) {
       console.error('Error creating article:', error);
     }
@@ -67,18 +61,6 @@ const App = () => {
               value={content}
               onChange={(e) => setContent(e.target.value)}
             />
-            <input
-              type="text"
-              placeholder="Image URL"
-              value={imageURL}
-              onChange={(e) => setImageURL(e.target.value)}
-            />
-            <input
-              type="text"
-              placeholder="Category ID"
-              value={categoryId}
-              onChange={(e) => setCategoryId(e.target.value)}
-            />
             <button onClick={createArticle}>Create</button>
           </form>
         </section>
@@ -92,7 +74,6 @@ const App = () => {
               <li key={article.id}>
                 <h3>{article.title}</h3>
                 <p>{article.content}</p>
-                <img src={article.image_url} alt={article.title} />
               </li>
             ))}
           </ul>
@@ -108,3 +89,4 @@ const App = () => {
 };
 
 export default App;
+
